@@ -1,9 +1,9 @@
 <template>
   <div class="todoListContainer">
-    <input class="dimension input textIndent background" type="text" placeholder="add todo" v-model="todoName"
+    <input class="dimension input textIndent background" type="text" placeholder="add todo" v-model="todoName "
            @keyup.enter="addTodo">
     <ul>
-      <li class="dimension background list flex" v-for="todo in filteredTodos" :key="todo"
+      <li class="dimension background list flex" v-for="todo in filteredTodos" :key="todo.name"
           :class="{completed: todo.completed,editing: todo===edit}">
         <input class="marginLeft" type="checkbox" v-model="todo.completed">
         <span class="textIndent text flex">{{ todo.name }}</span>
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'todoComposent',
+  name: 'todoComponent',
   data () {
     return {
       todos: [{
@@ -44,11 +44,13 @@ export default {
   },
   methods: {
     addTodo () {
-      this.todos.push({
-        name: this.todoName,
-        completed: false
-      })
-      this.todoName = ''
+      if (this.todoName !== '') {
+        this.todos.push({
+          name: this.todoName,
+          completed: false
+        })
+        this.todoName = ''
+      }
     },
     removeTodo (name) {
       for (let i = 0; i < this.todos.length; i++) {

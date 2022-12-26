@@ -5,6 +5,11 @@ const routes = [
     path: '/todoList',
     name: 'todoList',
     component: () => import(/* webpackChunkName: "about" */ '../views/todoList.vue')
+  },
+  {
+    path: '/calculator',
+    name: 'calculator',
+    component: () => import(/* webpackChunkName: "about" */ '../views/calculator.vue')
   }
 ]
 
